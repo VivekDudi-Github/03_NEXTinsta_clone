@@ -1,6 +1,6 @@
 import {  Check, ChevronLeft, Cog } from "lucide-react";
 import Link from "next/link";
-import PostGrid from "@/app/components/postGrid";
+import PostGrid from "../../components/PostGrid";
 
 export default function() {
     return (
