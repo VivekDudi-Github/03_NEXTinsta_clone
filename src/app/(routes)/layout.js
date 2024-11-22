@@ -2,6 +2,8 @@ import localFont from "next/font/local";
 import "../globals.css";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
+import { DiamondPlusIcon, HomeIcon, Rocket, Search, User, User2 } from "lucide-react";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -27,6 +29,25 @@ export default function RootLayout({ children }) {
       >
         <Theme>
           {children}
+          <div className="fixed bg-white p-8 bottom-0 left-0 right-0 flex justify-around" >
+          <Link className="p-3 shadow-xl hover:shadow-2xl hover:scale-105 duration-200 rounded-xl" href={'/'} >
+            <HomeIcon />
+          </Link>
+          <Link className="p-3 shadow-xl hover:shadow-2xl hover:scale-105 duration-200 rounded-xl" href={'/search'} >
+            <Search />
+          </Link>
+          <Link className="p-3 shadow-xl hover:shadow-2xl hover:scale-105 duration-200 rounded-xl" href={'/create'} >
+            <DiamondPlusIcon />
+          </Link>
+          <Link className="p-3 shadow-xl hover:shadow-2xl hover:scale-105 duration-200 rounded-xl" href={'/browse'} >
+            <Rocket />
+          </Link>
+          <Link className="p-3 shadow-xl hover:shadow-2xl hover:scale-105 duration-200 rounded-xl" href={'/profile'}>
+            <User />
+          </Link>
+          
+            
+          </div>
         </Theme>
       </body>
     </html>
