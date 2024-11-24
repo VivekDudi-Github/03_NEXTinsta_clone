@@ -22,6 +22,8 @@ export default function SettingForm (  {profile , session} ){
         }
         
         const UploadFunc = async() => {
+            console.log("func run");
+            
             data.set("file" ,  avatar)  ;
             
             const uploadRequest = await fetch("/api/upload" ,  {
@@ -32,7 +34,6 @@ export default function SettingForm (  {profile , session} ){
             console.log(signedUrl);
             
             setnewAvatarUrl(signedUrl) ;
-            console.log(newAvatarUrl );
             
         }
         UploadFunc() ;
@@ -42,7 +43,9 @@ export default function SettingForm (  {profile , session} ){
     return (
 
         <form action={async (FormData) => {
-            const oldurl = profile?.avatar
+            const oldurl = profile?.avatar ;
+            console.log(newAvatarUrl);
+            
             await UpdateProfileFunction(FormData , newAvatarUrl  , oldurl , session)
             router.push("/profile")
         }}>

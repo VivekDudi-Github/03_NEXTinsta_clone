@@ -19,20 +19,22 @@ export default async function() {
         }
     })
     
+    
     if(!profile){
         redirect("/settings")
     }
+
     
     
     return (
-        <main>
+        <main className="p-4 w-full max-w-[1300px]"> 
             <section className="flex justify-between items-center">
                 <button>
                     <ChevronLeft/>
                 </button>
                 <div className="font-bold flex items-center gap-2">
                     {profile.username}
-                    <div className=" bg-red-500 rounded-full size-5  text-white   inline-flex justify-center items-center">
+                    <div className=" bg-slate-600 rounded-full size-5  text-white   inline-flex justify-center items-center">
                         <Check size={14}/>
                     </div>
                 </div>
@@ -42,7 +44,7 @@ export default async function() {
             </section>
             
             <section className="mt-8     flex justify-center items-center">
-                <div className=" size-[220px]    bg-gradient-to-tr from-orange-200 to-red-500    rounded-full flex justify-center items-center">  
+                <div className=" size-[220px]    bg-gradient-to-tr from-slate-400 to-black    rounded-full flex justify-center items-center">  
                     <div className=" size-[210px] bg-white rounded-full     flex justify-center items-center">  
                         <div className=" size-[200px] rounded-full overflow-hidden object-cover">
                             <img className="object-cover size-[200px]"
@@ -57,7 +59,6 @@ export default async function() {
                 <h1 className=" font-bold text-xl">{profile.name}</h1>
                 <p className=" text-gray-500 mb-3 mt-1 text-sm">
                     {profile.subtitle}<br/>
-                    {/* {profile.email} */}
                     </p>
                 <p className="text-gray-500 font-semibold">
                     {profile.bio} <br/>

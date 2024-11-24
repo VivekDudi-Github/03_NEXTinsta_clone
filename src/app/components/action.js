@@ -6,11 +6,11 @@ export const UpdateProfileFunction = async (FormData ,  newAvatarUrl  , oldurl ,
     console.log(newAvatarUrl , oldurl );
     
     
-    const avatarURL = newAvatarUrl ? newAvatarUrl : oldurl ;
+    const avatarURL = typeof newAvatarUrl === "string" ? newAvatarUrl : oldurl
     
     
 
-    const result = await prisma.profile.upsert({
+    await prisma.profile.upsert({
         where : { 
             email : session?.user?.email ,
         }

@@ -8,8 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        yel: "var(--yel)",
         redish: "var(--redish)",
-        orangish: "var(--orange)",
+        
+      },
+      fontFamily: {
+        Billabong: ['Billabong', 'sans-serif'], // Local Font
       },
     },
   },
