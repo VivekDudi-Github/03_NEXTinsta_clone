@@ -14,10 +14,12 @@ export async function POST(request) {
       throw new TypeError("The 'file' field must be a valid File or Blob.");
     }
 
-    const uploadData = await pinata.upload.file(file);
+    const uploadData = await pinata.upload.file(file , {
+      groupId : "01936230-7bfa-7622-b654-2fa46169a2cb" 
+    });
     const url = await pinata.gateways.createSignedURL({
       cid: uploadData.cid,
-      expires: 3600,
+      expires: 3600 * 24 *365 ,
     });
 
     return NextResponse.json(url, { status: 200 });

@@ -22,3 +22,14 @@ model Profile {
   name      String?
   email     String @unique
 }
+
+
+model Post {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  creator       String
+  image         String
+  description   String 
+  likeCount     Int @default(0)
+  createdAt     DateTime @default(now())
+  
+}

@@ -8,23 +8,23 @@ import { useEffect, useRef, useState } from "react"
 export default function SettingForm (  {profile , session} ){
     const router = useRouter() ;
     const fileInputRef = useRef() ;
-    const isFirstRender = useRef(true) ; 
 
     const [avatar , setAvatar] = useState(profile?.avatar || null) ;
+    const [NewAvatarFile , setNewAvatarFile] = useState(null) ;
+    
     const [newAvatarUrl , setnewAvatarUrl]  = useState(null) ;
     const data = new FormData() ; 
 
     
     useEffect( () => {
-        if(isFirstRender.current){
-            isFirstRender.current = false ;
+        if(!NewAvatarFile){
             return ;
         }
         
         const UploadFunc = async() => {
             console.log("func run");
             
-            data.set("file" ,  avatar)  ;
+            data.set("file" ,  NewAvatarFile)  ;
             
             const uploadRequest = await fetch("/api/upload" ,  {
                 method : "POST" ,
@@ -32,12 +32,10 @@ export default function SettingForm (  {profile , session} ){
             } ) 
             const signedUrl = await uploadRequest.json();
             console.log(signedUrl);
-            
             setnewAvatarUrl(signedUrl) ;
-            
         }
         UploadFunc() ;
-    } , [ avatar])
+    } , [ NewAvatarFile])
 
 
     return (
@@ -52,11 +50,10 @@ export default function SettingForm (  {profile , session} ){
             <div className=" flex items-center  gap-6">
                 <div>
                     <div className={ `size-24  rounded-full overflow-hidden flex justify-center  ${!avatar ? "bg-black" : "" } `}>
-                        {avatar ?
+                        {avatar || newAvatarUrl ?
                          <img className="size-24 object-cover" 
                             src={
-                                typeof avatar === "string" ? 
-                                avatar : URL.createObjectURL(avatar) 
+                                newAvatarUrl ? newAvatarUrl : avatar
                         } /> : 
                         <UserRoundXIcon size='85' color="white" />
                         }
@@ -66,7 +63,7 @@ export default function SettingForm (  {profile , session} ){
                     <input className="hidden"
                      type="file" 
                      ref={fileInputRef} 
-                     onChange={(e) => setAvatar(e.target.files[0])}
+                     onChange={(e) => setNewAvatarFile(e.target.files[0])}
                      />
                      <Button 
                         variant="surface" color="violet" 

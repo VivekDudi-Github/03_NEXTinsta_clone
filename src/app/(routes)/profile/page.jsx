@@ -1,6 +1,6 @@
 import {  Check, ChevronLeft, Cog } from "lucide-react";
 import Link from "next/link";
-import PostGrid from "../../components/PostGrid";
+import ProfilePosts from "../../components/ProfilePosts";
 import { prisma } from "../../components/db";
 import { auth } from "../../../auth";
 import { redirect } from "next/navigation";
@@ -72,7 +72,7 @@ export default async function() {
             </section>
 
             <section className="mt-4">
-                <PostGrid />
+                <ProfilePosts profile = {profile} />
             </section>
         </main>
         
