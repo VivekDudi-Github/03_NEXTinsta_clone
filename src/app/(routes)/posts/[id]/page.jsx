@@ -1,47 +1,66 @@
 
 import { prisma } from "../../../components/db"
-
+import CommentForm from "../../../components/CommentForm"
+import { Suspense } from "react";
 
 const SinglePost = async ({params}) => {
-    const id = await params?.id ;
-    const post = await prisma.post.findFirstOrThrow({
-        where : {
-            id : id
-        }
-    })
-    const authorProfile = await prisma.profile.findFirstOrThrow({
-        where : {
-            username : post.username ,
-        }
-    })
-
-
-console.log(post);
+    const id = params.id
+    // const post = await prisma.post.findFirstOrThrow({
+    //     where : {
+    //         id : id
+    //     }
+    // })
+    // const authorProfile = await prisma.profile.findFirstOrThrow({
+    //     where : {
+    //         username : post.username ,
+    //     }
+    // })
+const post = "" ;
+const authorProfile = "" ;
 
     return (
         <>
-        <div className=" grid grid-cols-2 gap-4 p-4 w-full">
-            <div className="w-full max-h-[80%] rounded-full ">
-                <img className="w-full h-full object-contain " src={post.image} />
+        <div className=" grid md:grid-cols-2 w-full gap-4 p-4">
+            <div className="w-full border-2 border-black">
+                <img className=" object-contain w-[225px] h-[225px] " src={post?.image }/>
             </div>
-            
-            <div className="w-full">
-                <div className=" flex rounded-l-full overflow-hidden">
-                    <img src={authorProfile.avatar || ""} alt="Creator Avatar" />
-                   
-                    <div className=" ">
-                        <div className="bg-gradient-to-r from-black via-black  to-white h-[2px] w-full"></div>
-                        <h3 className="p-3 text-4xl ml-2 font-semibold font-Billabong ">
-                            {authorProfile.name}
-                            <div className="bg-gradient-to-r from-black  to-white h-[2px] w-1/2 "></div>
+
+
+            <div className="">
+                <div className="flex">
+                    <div>
+                        <div className="size-16 rounded-r-full aspect-square overflow-hidden border-2 border-black">
+                            <img src={authorProfile?.avatar || ""} />
+                        </div>
+                    </div>
+                    <div className="ml-1 ">
+                        
+                        <h3 className="font-semibold py-1 ">
+                            {authorProfile?.name || "Kyl"}
+                            
                         </h3>
-                        <p className="p-2 font border-[1px] border-black rounded-xl  ml-2 ">
-                            {post.description} I don't know what is this but kinda annoying.
-                        </p> 
+                        
+                        <h5 className="text-gray-600 text-xs pt-1" >
+                                {authorProfile.username || "@Kyl2"}
+                        </h5> 
+
+                        <div className=" bg-gradient-to-br rounded-lg from-gray-700 via-gray-500 to-white p-[2px]">
+                            <div className=" rounded-md bg-gray-200 p-4 border-gray-300 border-2">
+                                <p>
+                                    {post?.description|| "Post @2"} Lorem ipsum dolor sit amet consectetur possimus optio quaerat commodi consequatur.
+                                </p>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
-                
+                <div className="pt-4">
+                    <Suspense >
+                        <CommentForm />
+                    </Suspense>
+                </div>
             </div>
+
         </div>
         </>
     )

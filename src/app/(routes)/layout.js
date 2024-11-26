@@ -33,11 +33,11 @@ export default function RootLayout({ children }) {
       >
         <Theme>
           <div className="flex">
-            <div className="bg-gradient-to-t to-black from-white hidden md:block w-56 p-3  shadow-2xl shadow-black h-screen sticky top-0">
+            <div className="bg-gradient-to-t to-black from-white hidden lg:block w-56 p-3  shadow-2xl shadow-black h-screen sticky top-0">
               <img  src="https://www.pngkey.com/png/full/1-13459_instagram-font-logo-white-png-instagram-white-text.png" />
               <DesktopNav/>
             </div>            
-            <div className="w-full flex justify-center">
+            <div className="w-full lg-pb-0 pb-16 flex justify-center">
             {children}
             </div>
           </div>

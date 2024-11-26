@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function MobileNav() {
   return (
-    <div className=" md:hidden fixed bg-[#fffdfd4f] p-4 bottom-0 left-0 right-0 flex justify-center">
+    <div className="  lg:hidden fixed bg-[#fffdfd4f] p-4 bottom-0 left-0 right-0 flex justify-center">
     <div className=" flex justify-around  text-gray-600
                     max-w-xl w-full"
       >

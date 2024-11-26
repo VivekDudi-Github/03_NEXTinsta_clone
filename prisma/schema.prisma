@@ -33,3 +33,12 @@ model Post {
   createdAt     DateTime @default(now())
   
 }
+
+model Comment {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  username     String 
+  likeCount   Int @default(0)
+  createdAt   DateTime @default(now())
+  text        String
+
+}
