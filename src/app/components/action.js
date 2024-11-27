@@ -63,12 +63,19 @@ export const PostEntry = async (FormData ,imageurl , ) => {
     }
 }
 
-export const PostComment = async (Data) => {
+export const PostComment = async (Data , id) => {
     const { profile} = await sessionFunc() ;
-
-    await prisma.comment.create({
-        username : profile.username , 
-        text : Data.get("text")
-    })
-    return ;
+    console.log(id);
+    
+    if(Data.get('comment')){
+        
+        await prisma.comment.create({
+            data : {
+                postId : `${id}` ,
+                username : profile.username , 
+                text : Data.get("comment")
+            }
+        })
+        return ; 
+    }
 }

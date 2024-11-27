@@ -1,46 +1,49 @@
 
 import { prisma } from "../../../components/db"
-import CommentForm from "../../../components/CommentForm"
+import CommentFormLayout from "../../../components/CommentFormLayout"
+import CommentList from "../../../components/CommentList"
 import { Suspense } from "react";
 
+
 const SinglePost = async ({params}) => {
-    const id = params.id
-    // const post = await prisma.post.findFirstOrThrow({
-    //     where : {
-    //         id : id
-    //     }
-    // })
-    // const authorProfile = await prisma.profile.findFirstOrThrow({
-    //     where : {
-    //         username : post.username ,
-    //     }
-    // })
-const post = "" ;
-const authorProfile = "" ;
+    const id = await params.id
+    
+    const post = await prisma.post.findFirstOrThrow({
+        where : {
+            id : id
+        }
+    })
+    const authorProfile = await prisma.profile.findFirstOrThrow({
+        where : {
+            username : post.username ,
+        }
+    })
+// const post = "" ;
+// const authorProfile = "" ;
 
     return (
         <>
         <div className=" grid md:grid-cols-2 w-full gap-4 p-4">
             <div className="w-full border-2 border-black">
-                <img className=" object-contain w-[225px] h-[225px] " src={post?.image }/>
+                <img className="w-full" src={post?.image }/>
             </div>
 
 
             <div className="">
                 <div className="flex">
                     <div>
-                        <div className="size-16 rounded-r-full aspect-square overflow-hidden border-2 border-black">
+                        <div className="size-16 rounded-r-full aspect-square overflow-hidden ">
                             <img src={authorProfile?.avatar || ""} />
                         </div>
                     </div>
                     <div className="ml-1 ">
                         
-                        <h3 className="font-semibold py-1 ">
+                        <h3 className="font-semibold pt-1 ">
                             {authorProfile?.name || "Kyl"}
                             
                         </h3>
                         
-                        <h5 className="text-gray-600 text-xs pt-1" >
+                        <h5 className="text-gray-600 text-xs pb-1" >
                                 {authorProfile.username || "@Kyl2"}
                         </h5> 
 
@@ -56,8 +59,11 @@ const authorProfile = "" ;
                 </div>
                 <div className="pt-4">
                     <Suspense >
-                        <CommentForm />
+                        <CommentFormLayout id={id} />
                     </Suspense>
+                </div>
+                <div>
+                    <CommentList id={id} />
                 </div>
             </div>
 
