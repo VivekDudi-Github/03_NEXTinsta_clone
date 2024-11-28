@@ -11,7 +11,7 @@ function PostLikeInfo({likes , postId , likeStatus}) {
         <div className=" flex justify-start items-center">
             <button
               className="p-2 active:scale-90 duration-200" 
-              onClick={ async() => {
+              onClick={ async() => { 
                         await TogglePostLikes(postId)
                         router.refresh() ;
                 }} >  
