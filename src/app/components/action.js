@@ -79,3 +79,31 @@ export const PostComment = async (Data , id) => {
         return ; 
     }
 }
+
+export const TogglePostLikes = async ( postId ) => {
+    const {profile} = await sessionFunc() ; 
+
+    const FindLikeStatus = await prisma.like.findFirst({
+        where : {
+            postId : postId, 
+            username : profile.username , 
+        }
+    })
+
+    if (FindLikeStatus) {
+        await prisma.like.delete({
+            where : {
+                id : FindLikeStatus.id
+            }
+        })
+    }else
+    {
+        await prisma.like.create({
+            data : {
+                postId : postId , 
+                liked : true ,
+                username : profile.username 
+            }
+        })
+    }    
+}

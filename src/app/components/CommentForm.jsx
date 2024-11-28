@@ -1,12 +1,16 @@
+"use client"
 import { TextArea } from '@radix-ui/themes';
+
 import { PostComment } from './action';
+import { useRouter } from 'next/navigation';
 
 function CommentForm({avatar , id}) {
+  const Router = useRouter() ;
   return (
-    <form className=''
+    <form className=' border-b-[2px] border-gray-300 pb-2 '
           action={async (data) => {
-            "use server"
             await PostComment(data , id)
+            Router.refresh() ;
           }}>
 
         <div className=' flex gap-2 '>

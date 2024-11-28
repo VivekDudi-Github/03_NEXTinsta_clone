@@ -3,10 +3,20 @@ import { prisma } from "../../../components/db"
 import CommentFormLayout from "../../../components/CommentFormLayout"
 import CommentList from "../../../components/CommentList"
 import { Suspense } from "react";
-
+import { Bookmark, Heart } from "lucide-react";
+import PostLikeInfo from "../../../components/PostLikeInfo"
+import {auth} from "../../../../auth"
 
 const SinglePost = async ({params}) => {
-    const id = await params.id
+    const session = await auth() ;
+    const profile = await prisma.profile.findFirstOrThrow({
+        where : {
+            email : session?.user?.email
+        }
+    }) 
+
+    const GetParams =  await params ;
+    const {id} =  GetParams ;
     
     const post = await prisma.post.findFirstOrThrow({
         where : {
@@ -18,14 +28,26 @@ const SinglePost = async ({params}) => {
             username : post.username ,
         }
     })
-// const post = "" ;
-// const authorProfile = "" ;
+    const postDate = JSON.stringify(post.createdAt).slice(1 , 11)
+    const likeCount = await prisma.like.count({
+        where : {
+            postId : post.id 
+        }
+    })
 
+    const likeStatus = await prisma.like.count({
+        where : {
+            postId : post.id , 
+            username : profile.username ,
+        }
+    })
+    
+    
     return (
-        <>
+        <> 
         <div className=" grid md:grid-cols-2 w-full gap-4 p-4">
-            <div className="w-full border-2 border-black">
-                <img className="w-full" src={post?.image }/>
+            <div className="w-full  md:sticky top-4 ">
+                <img className="w-full md:sticky top-4 " src={post?.image }/>
             </div>
 
 
@@ -48,13 +70,25 @@ const SinglePost = async ({params}) => {
                         </h5> 
 
                         <div className=" bg-gradient-to-br rounded-lg from-gray-700 via-gray-500 to-white p-[2px]">
-                            <div className=" rounded-md bg-gray-200 p-4 border-gray-300 border-2">
+                            <div className=" rounded-md bg-gray-200 p-4 pb-1 border-gray-300 border-2">
                                 <p>
                                     {post?.description|| "Post @2"} Lorem ipsum dolor sit amet consectetur possimus optio quaerat commodi consequatur.
                                 </p>
+                                <div className="text-xs text-gray-400 text-right pt-1"> 
+                                    {postDate}                                     
+                                </div>
                             </div>
                         </div>
-                        
+
+
+                    </div>
+                </div>
+                <div className="w-full flex justify-between py-2 border-y-2 border-gray-300 my-2">
+                    <PostLikeInfo likes={likeCount} postId={post.id} likeStatus= {likeStatus} />
+                    <div className=" flex items-center">
+                        <button>
+                            <Bookmark />
+                        </button>
                     </div>
                 </div>
                 <div className="pt-4">
