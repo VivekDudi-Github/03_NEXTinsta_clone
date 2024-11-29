@@ -2,11 +2,11 @@ import { formatDistanceToNow } from "date-fns"
 import { prisma } from "./db"
 
 async function CommentList({postId}) {
+    
   const comments = await prisma.comment.findMany({
     where : {
         postId : postId  
-    } , 
-    take : 10 
+    } 
   }) 
   
   const FetchAuthorProfile = async(username) => {
@@ -34,7 +34,7 @@ async function CommentList({postId}) {
                                     <img src={ avatar ||  ""} />
                                 </div>
                             </div>
-                        <div className="ml-1 ">
+                        <div className="ml-1 w-full ">
                             <div>
                                 <h3 className="font-semibold pt-1 ">
                                     {name || "Err :Name not available"} 
@@ -50,7 +50,7 @@ async function CommentList({postId}) {
                                 <div className=" bg-gradient-to-br rounded-lg from-gray-700 via-gray-500 to-white p-[2px]">
                                     <div className=" rounded-md bg-gray-200 p-4 border-gray-300 border-2">
                                         <p>
-                                            {comment.text} "Lorem ipsum dolor sit amet consectetur WOrds length limit 88
+                                            {comment.text} Words length limit 88
                                         </p>
                                     </div>
                                 </div>

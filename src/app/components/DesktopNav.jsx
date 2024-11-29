@@ -32,7 +32,7 @@ function DesktopNav() {
                 NavLinksArray.map((item , i) => {
                   const {text , link , Icon} = item ;
                   return (
-                    <div className="bg-white p-[3px] hover:border-0  group transition-all" key={i}>
+                    <div className="bg-white p-[3px] hover:border-2  group transition-all" key={i}>
                       <Link className=" flex gap-2 bg-white rounded-2xl text-black px-2 py-1 transition-all duration-300 group-hover:bg-transparent group-hover:text-white  " href={link}>
                         <Icon />
                         {text}

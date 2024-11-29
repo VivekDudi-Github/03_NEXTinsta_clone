@@ -44,7 +44,7 @@ export default async function() {
             </section>
             
             <section className="mt-8     flex justify-center items-center">
-                <div className=" size-[220px]    bg-gradient-to-tr from-slate-400 to-black    rounded-full flex justify-center items-center">  
+                <div className=" size-[220px]    bg-gradient-to-tr from-gray-100 via-slate-600 to-black    rounded-full flex justify-center items-center">  
                     <div className=" size-[210px] bg-white rounded-full     flex justify-center items-center">  
                         <div className=" size-[200px] rounded-full overflow-hidden object-cover">
                             <img className="object-cover size-[200px]"

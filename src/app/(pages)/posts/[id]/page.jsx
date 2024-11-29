@@ -7,16 +7,20 @@ import { Bookmark, Heart } from "lucide-react";
 import PostLikeInfo from "../../../components/PostLikeInfo"
 import {auth} from "../../../../auth"
 
-const SinglePost = async ({params}) => {
+const SinglePost = async ({params , passedParams}) => {
     const session = await auth() ;
     const profile = await prisma.profile.findFirstOrThrow({
         where : {
             email : session?.user?.email
         }
     }) 
+    console.log(passedParams);
+    
 
     const GetParams =  await params ;
-    const {id} =  GetParams ;
+    const {id} =  GetParams || passedParams ;
+    console.log(id);
+    
     
     const post = await prisma.post.findFirstOrThrow({
         where : {
@@ -58,7 +62,7 @@ const SinglePost = async ({params}) => {
                             <img src={authorProfile?.avatar || ""} />
                         </div>
                     </div>
-                    <div className="ml-1 ">
+                    <div className="ml-1 w-full">
                         
                         <h3 className="font-semibold pt-1 ">
                             {authorProfile?.name || "Kyl"}
@@ -69,15 +73,15 @@ const SinglePost = async ({params}) => {
                                 {authorProfile.username || "@Kyl2"}
                         </h5> 
 
-                        <div className=" bg-gradient-to-br rounded-lg from-gray-700 via-gray-500 to-white p-[2px]">
-                            <div className=" rounded-md bg-gray-200 p-4 pb-1 border-gray-300 border-2">
+                        <div className=" w-full bg-gradient-to-br rounded-lg from-gray-700 via-gray-500 to-white p-[2px]">
+                            <div className="w-full rounded-md bg-gray-200 p-4  border-gray-300 border-2">
                                 <p>
-                                    {post?.description|| "Post @2"} Lorem ipsum dolor sit amet consectetur possimus optio quaerat commodi consequatur.
+                                    {post?.description} 
                                 </p>
-                                <div className="text-xs text-gray-400 text-right pt-1"> 
-                                    {postDate}                                     
-                                </div>
                             </div>
+                        </div>
+                        <div className="text-xs text-gray-400 text-right pt-1"> 
+                                    {postDate}                                     
                         </div>
 
 
@@ -97,10 +101,9 @@ const SinglePost = async ({params}) => {
                     </Suspense>
                 </div>
                 <div>
-                    <CommentList id={id} />
+                    <CommentList postId={id} />
                 </div>
             </div>
-
         </div>
         </>
     )
