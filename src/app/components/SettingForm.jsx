@@ -5,7 +5,7 @@ import { UpdateProfileFunction } from "../components/action"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
-export default function SettingForm (  {profile , session} ){
+export default function SettingForm (  {profile , email}){
     const router = useRouter() ;
     const fileInputRef = useRef() ;
 
@@ -44,7 +44,7 @@ export default function SettingForm (  {profile , session} ){
             const oldurl = profile?.avatar ;
             console.log(newAvatarUrl);
             
-            await UpdateProfileFunction(FormData , newAvatarUrl  , oldurl , session)
+            await UpdateProfileFunction(FormData , newAvatarUrl  , oldurl , email)
             router.push("/profile")
         }}>
             <div className=" flex items-center  gap-6">
