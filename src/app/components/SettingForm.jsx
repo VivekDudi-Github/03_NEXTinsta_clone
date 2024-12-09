@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { LogOut } from "../components/action"
 
+<<<<<<< HEAD
 export default function SettingForm (  {profile , email} ){
+=======
+export default function SettingForm (  {profile , email}){
+>>>>>>> 19d4ca9c78be93b376223c0b5bf6b7ce54c546cf
     const router = useRouter() ;
     const fileInputRef = useRef() ;
     const [LogoutCLick , setLogoutCLick] = useState(false) ;
