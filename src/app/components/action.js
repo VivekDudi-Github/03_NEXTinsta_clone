@@ -1,6 +1,6 @@
 "use server"
 import { prisma } from "./db";
-import { auth } from "../../auth";
+import {signOut, auth } from "../../auth";
 
 
 const sessionFunc = async() => {
@@ -15,14 +15,14 @@ const sessionFunc = async() => {
     return { session , profile }
 }
 
-export const UpdateProfileFunction = async (FormData ,  newAvatarUrl  , oldurl , session ) => {
+export const UpdateProfileFunction = async (FormData ,  newAvatarUrl  , oldurl , email ) => {
     console.log(newAvatarUrl , oldurl );
     
     const avatarURL = typeof newAvatarUrl === "string" ? newAvatarUrl : oldurl
     
     await prisma.profile.upsert({
         where : { 
-            email : session?.user?.email ,
+            email : email ,
         }
         ,
         update : {
@@ -33,7 +33,7 @@ export const UpdateProfileFunction = async (FormData ,  newAvatarUrl  , oldurl ,
             avatar : avatarURL
         } , 
         create : {
-            email : session?.user?.email , 
+            email : email , 
             username :  FormData.get("username") ,
             name :  FormData.get("name") ,
             subtitle :  FormData.get("subtitle") , 
@@ -106,4 +106,9 @@ export const TogglePostLikes = async ( postId ) => {
             }
         })
     }    
+}
+
+export const LogOut = async() => {
+    await signOut('google')
+    return ;
 }

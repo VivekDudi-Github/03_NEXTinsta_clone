@@ -14,12 +14,10 @@ const SinglePost = async ({params , passedParams}) => {
             email : session?.user?.email
         }
     }) 
-    console.log(passedParams);
     
 
     const GetParams =  await params ;
     const {id} =  GetParams || passedParams ;
-    console.log(id);
     
     
     const post = await prisma.post.findFirstOrThrow({

@@ -14,8 +14,9 @@ function CommentForm({avatar , id}) {
           }}>
 
         <div className=' flex gap-2 '>
-            <div className='w-[56px] h-14 aspect-square rounded-r-full flex-shrink-0 overflow-hidden '>
-              <img src={avatar} alt="" />
+            <div
+             className='w-[56px] h-14 aspect-square rounded-r-full flex-shrink-0 overflow-hidden' onClick={() => {Router.push('/profile')}}>
+              <img className=' object-cover size-14' src={avatar} alt="" />
             </div>
             <div className=' w-full '>
               <TextArea  name='comment'

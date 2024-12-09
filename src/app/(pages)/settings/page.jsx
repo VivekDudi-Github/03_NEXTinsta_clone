@@ -1,13 +1,12 @@
 "use server"
 import { prisma } from "../../components/db";
 import {auth} from "../../../auth";
-import { redirect } from "next/navigation";
 import SettingForm from  "../../components/SettingForm";
 
 async function page() {
     const session = await auth() ;
     
-    const profile = await prisma.profile.findFirstOrThrow({
+    const profile = await prisma.profile.findFirst({
         where : { 
             email : session?.user?.email ,
         } 
@@ -21,7 +20,7 @@ async function page() {
             Profile Settings
         </div>
 
-        <SettingForm  session= {session} profile = {profile}/>
+        <SettingForm  email= {session?.user?.email} profile = {profile || ""}/>
     </div>
   )
 }

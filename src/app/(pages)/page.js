@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "../../auth";
+import { auth, signIn, signOut } from "../../auth.js";
 
 export default async function Home() {
   const session = await auth();
