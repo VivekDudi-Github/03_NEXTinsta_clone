@@ -30,8 +30,8 @@ async function CommentList({postId}) {
                 return (
                     <div key={index} className="flex mt-2">
                         <div>
-                                <div className="size-12 rounded-full aspect-square overflow-hidden border-2 border-black">
-                                    <img src={ avatar ||  ""} />
+                                <div className="size-12 rounded-full aspect-square overflow-hidden">
+                                    <img className="size-12 object-cover" src={ avatar ||  ""} />
                                 </div>
                             </div>
                         <div className="ml-1 w-full ">

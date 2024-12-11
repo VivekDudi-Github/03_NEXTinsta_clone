@@ -4,12 +4,12 @@ import SearchResults from "../../components/SearchResults"
 
 async function page({ searchParams }) {
    const Params = await searchParams ;
-  
+
     return (
-    <div className=' w-full p-4 '>
+    <div className=' w-full h-full p-4  '>
         <SearchForm />
         <Suspense fallback='loading...'>
-            <SearchResults query={Params} />
+            <SearchResults query={Params.query} />
         </Suspense>
     </div>
   )

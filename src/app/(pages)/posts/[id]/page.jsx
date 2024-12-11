@@ -48,8 +48,10 @@ const SinglePost = async ({params , passedParams}) => {
     return (
         <> 
         <div className=" grid md:grid-cols-2 w-full gap-4 p-4">
-            <div className="w-full  md:sticky top-4 ">
-                <img className="w-full md:sticky top-4 " src={post?.image }/>
+            <div className="w-full h-fit md:sticky top-0 ">
+                
+                    <img className="w-full " src={post?.image }/>
+                
             </div>
 
 

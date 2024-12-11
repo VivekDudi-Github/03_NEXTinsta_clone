@@ -6,7 +6,7 @@ function SearchForm() {
     return (
     <form className=' m-auto w-full max-w-sm h-10 border-2 focus-within:border-black flex items-center rounded-md overflow-hidden '
           action={(data) => {
-            router.push('/search?q='+ data.get('query'))
+            router.push('/search?query='+ data.get('query'))
             router.refresh() ;
         }}  
             >

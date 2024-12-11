@@ -20,11 +20,8 @@ async function page() {
             Profile Settings
         </div>
 
-<<<<<<< HEAD:src/app/(pages)/settings/page.jsx
         <SettingForm  email= {session?.user?.email} profile = {profile || ""}/>
-=======
-        <SettingForm  email= {session?.users?.email} profile = {profile || "" }/>
->>>>>>> 19d4ca9c78be93b376223c0b5bf6b7ce54c546cf:src/app/(routes)/settings/page.jsx
+
     </div>
   )
 }
