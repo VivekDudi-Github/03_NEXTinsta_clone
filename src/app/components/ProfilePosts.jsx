@@ -9,9 +9,9 @@ async function ProfilePosts({profile}) {
                         }
                     })
     return (
-        <>
+        <div className="max-w-4xl mx-auto">
             <PostGrid  post = {posts}/>
-        </>
+        </div>
   )
 }
 

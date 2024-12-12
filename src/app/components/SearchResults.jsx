@@ -34,7 +34,7 @@ export default async function SearchResults({query}) {
             profiles.map((profile , index) => {
               return (
                 <Link
-                  href={`users/${profile.username}`} 
+                  href={`user/${profile.username}`} 
                   key={index}  
                   title={`@${profile.username}`}  
                   className=' text-gray bg-gradient-to-r from-black via-slate-600 to-slate-200 rounded  pr-4'

@@ -3,8 +3,8 @@ import Link from "next/link";
 function PostGrid( {post} ) {
   return (
     <>
-      <div className="max-w-4xl mx-auto">
-        <div className="columns-1 sm:columns-3 md:columns-4 lg:columns-4 gap-4 ">
+      <div className="max-w-4xl ">
+        <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-4 gap-4 ">
           {post.map((post, index) => {
             if ( !post ){
               return ;
