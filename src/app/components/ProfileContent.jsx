@@ -1,8 +1,9 @@
-import {  Check, ChevronLeft, Cog } from "lucide-react";
+import {  Check, ChevronLeft, Cog, LucideMessagesSquare, UserCheck2Icon, UserPlus2 } from "lucide-react";
 
 import Link from "next/link";
 import ProfilePosts from "./ProfilePosts";
 import { prisma } from "./db";
+import FollwButton from "./FollowButton"
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
 
@@ -12,8 +13,25 @@ async function ProfileContent({profile}) {
 
     const ownerProfile = email === profile.email ;
     
+    let followState ;
+    if(!ownerProfile ){     
+        const {username} =  await prisma.profile.findFirst({
+            where : {
+                email : email , 
+            }
+        })
+
+        followState = await prisma.follow.findFirst({
+            where : {
+                followBy : username , 
+                followTo : profile.username , 
+            }
+    })
+    }
+
+
   return (
-      <main className="p-4 w-full max-w-[1300px]"> 
+    <main className="p-4 w-full max-w-[1300px]"> 
             <section className="flex justify-between items-center">
                 { ownerProfile && 
                     <button>
@@ -51,12 +69,28 @@ async function ProfileContent({profile}) {
                     {profile.subtitle}<br/>
                     </p>
                 <p className="text-gray-500 font-semibold">
-                    {profile.bio} <br/>
-                     
+                    {profile.bio} <br/> 
                 </p>
+                
+                {
+                   !ownerProfile && 
+                <div className=" mx-auto my-2 px-3 w-fit flex gap-1 justify-center items-center  overflow-hidden  rounded-r-full rounded-l-full   bg-gradient-to-tr  from-slate-500/35 via-slate-800 to-slate-950">
+                    <FollwButton username={profile.username} followingStatus={followState ? true : false} />
+                    
+                    <div className="bg-white py-6 w-[1px] h-full "></div>
+                    
+                    <Link href={'/message'}>
+                        <button className=" min-w-32 my-2 flex items-center justify-center gap-1  rounded-r-full p-4 py-[2px] text-sm   font-medium text-white">
+                            <LucideMessagesSquare />
+                            Mesaage
+                        </button>
+                    </Link>
+                </div>
+                }
+
             </section>
 
-            <section className=" flex justify-center pt-4">
+            <section className=" flex justify-center ">
                 <Link  className="m-2 font-bold" href={"/"}>POST</Link>
                 <Link  className="m-2 font-bold text-gray-400" href={"/"} >HIGHTLIGHTS</Link>
             </section>
@@ -64,7 +98,7 @@ async function ProfileContent({profile}) {
             <section className="mt-4">
                 <ProfilePosts profile = {profile} />
             </section>
-        </main>
+    </main>
         
   )
 }

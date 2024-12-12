@@ -50,3 +50,10 @@ model Like {
   liked       Boolean
   createdAt   DateTime @default(now())
 }
+
+model Follow {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId 
+  followTo    String
+  followBy    String
+  createdAt   DateTime @default(now())
+}

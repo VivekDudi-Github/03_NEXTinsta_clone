@@ -1,6 +1,7 @@
 "use server"
 import { prisma } from "./db";
 import {signOut, auth } from "../../auth";
+import { use } from "react";
 
 
 const sessionFunc = async() => {
@@ -111,4 +112,32 @@ export const TogglePostLikes = async ( postId ) => {
 export const LogOut = async() => {
     await signOut('google')
     return ;
+}
+
+export const FollowFunc = async(username) => {
+    const {profile} = await sessionFunc() ;
+
+    const FollwingStatus = await prisma.follow.findFirst({
+        where : {
+            followBy : profile.username ,
+            followTo : username 
+        }
+    })
+
+    if(FollwingStatus){
+        await prisma.follow.delete({
+            where : {
+                id : FollwingStatus.id
+            }
+        })
+    }else {
+        await prisma.follow.create({
+            data : {
+                followBy : profile.username , 
+                followTo : username , 
+            }
+        })
+    }
+
+
 }
