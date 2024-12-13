@@ -87,7 +87,8 @@ const SinglePost = async ({params , passedParams}) => {
                     </div>
                 </div>
                 <div className="w-full flex justify-between py-2 border-y-2 border-gray-300 my-2">
-                    <PostLikeInfo likes={likeCount} postId={post.id} likeStatus= {likeStatus} />
+                    
+                    <PostLikeInfo likes={likeCount} postId={post.id} likeStatus= {likeStatus === 1 ? true : false} />
                     <div className=" flex items-center">
                         <button>
                             <Bookmark />

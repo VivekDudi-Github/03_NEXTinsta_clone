@@ -29,7 +29,7 @@ export default async function SearchResults({query}) {
           Search results for {query}
         </h1>
         <h2> 
-          <div className=' py-2 flex gap-2 overflow-scroll'>
+          <div className=' py-2 flex gap-3 overflow-scroll'>
           { profiles.length > 0 ? 
             profiles.map((profile , index) => {
               return (
@@ -37,7 +37,7 @@ export default async function SearchResults({query}) {
                   href={`user/${profile.username}`} 
                   key={index}  
                   title={`@${profile.username}`}  
-                  className=' text-gray bg-gradient-to-r from-black via-slate-600 to-slate-200 rounded  pr-4'
+                  className=' text-gray bg-gradient-to-r from-violet-900 via-violet-400 to-violet-200 rounded  pr-4'
                 >
                   <div  className='flex '>
                     <div className='size-20 overflow-hidden rounded-r-full '>

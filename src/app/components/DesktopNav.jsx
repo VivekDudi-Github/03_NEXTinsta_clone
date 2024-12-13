@@ -26,7 +26,7 @@ const NavLinksArray = [
 function DesktopNav() {
   return ( 
     <div className="  flex-col  flex mt-4 text-white sticky
-                              *:bg-white *:mt-2 *:rounded-3xl *:border-[3px] *:duration-100 *:gap-3  *:bg-gradient-to-tr to-black via-slate-700 from-slate-300
+                              *:bg-white *:mt-2 *:rounded-3xl *:border-[3px] *:duration-100 *:gap-3  *:bg-gradient-to-tr to-red-400  from-violet-600
               ">
               {
                 NavLinksArray.map((item , i) => {

@@ -33,7 +33,7 @@ export default function RootLayout({ children , post }) {
       >
         <Theme>
           <div className="flex h-screen ">
-            <div className="bg-gradient-to-t to-black via-slate-800/80 from-white hidden lg:block w-56 p-3  shadow-2xl shadow-black h-screen sticky top-0">
+            <div className="bg-gradient-to-b to-violet-600  from-red-400 hidden lg:block w-56 p-3  shadow-2xl shadow-black h-screen sticky top-0">
               <img  src="https://www.pngkey.com/png/full/1-13459_instagram-font-logo-white-png-instagram-white-text.png" />
               <DesktopNav/>
             </div>            

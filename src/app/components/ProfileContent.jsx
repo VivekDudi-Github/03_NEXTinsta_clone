@@ -52,7 +52,7 @@ async function ProfileContent({profile}) {
             </section>
             
             <section className="mt-8     flex justify-center items-center">
-                <div className=" size-[220px]    bg-gradient-to-tr from-gray-100 via-slate-600 to-black    rounded-full flex justify-center items-center">  
+                <div className=" size-[220px]    bg-gradient-to-tr from-violet-400 to-red-600    rounded-full flex justify-center items-center">  
                     <div className=" size-[210px] bg-white rounded-full     flex justify-center items-center">  
                         <div className=" size-[200px] rounded-full overflow-hidden object-cover">
                             <img className="object-cover size-[200px]"
@@ -74,7 +74,7 @@ async function ProfileContent({profile}) {
                 
                 {
                    !ownerProfile && 
-                <div className=" mx-auto my-2 px-3 w-fit flex gap-1 justify-center items-center  overflow-hidden  rounded-r-full rounded-l-full   bg-gradient-to-tr  from-slate-500/35 via-slate-800 to-slate-950">
+                <div className=" mx-auto my-2 px-3 w-fit flex gap-1 justify-center items-center  overflow-hidden  rounded-r-full rounded-l-full   bg-gradient-to-tr  from-violet-600 to-red-400">
                     <FollwButton username={profile.username} followingStatus={followState ? true : false} />
                     
                     <div className="bg-white py-6 w-[1px] h-full "></div>

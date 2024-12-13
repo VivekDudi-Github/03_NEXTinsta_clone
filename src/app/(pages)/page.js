@@ -1,4 +1,5 @@
-import { auth, signIn, signOut } from "../../auth.js";
+import { auth, signIn } from "../../auth.js";
+import HomePage from "../components/HomePage.jsx"
 
 export default async function Home() {
   const session = await auth();
@@ -12,11 +13,11 @@ if(!session){
         }}
       >
         <button 
-        className="border-2 bg-orangish rounded-xl p-4" 
-        type="submit"
+            className="border-2 bg-orangish rounded-xl p-4" 
+            type="submit"
         >
           Signin with Google
-          </button>
+        </button>
       
       </form>
       
@@ -24,13 +25,8 @@ if(!session){
     );
 }
   return (
-  <div className="">
-      <button onClick= {async () => {
-        "use server"
-        await signOut("google")} }>
-      LOgOUt
-    </button>
-    
+  <div className="w-full">
+      <HomePage />
   </div>
   );
 }

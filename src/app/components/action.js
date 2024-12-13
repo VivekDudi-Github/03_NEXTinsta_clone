@@ -4,7 +4,7 @@ import {signOut, auth } from "../../auth";
 import { use } from "react";
 
 
-const sessionFunc = async() => {
+export const sessionFunc = async() => {
     const session = await auth() ; 
 
     const profile = await prisma.profile.findFirstOrThrow({

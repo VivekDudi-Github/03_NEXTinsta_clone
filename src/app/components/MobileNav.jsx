@@ -15,7 +15,7 @@ function MobileNav() {
       </Link>
       
       <Link 
-        className="  p-3 shadow-md shadow-gray-300 scale-[120%]  hover:scale-125 duration-200 rounded-full bg-gradient-to-tr from-purple-300 via-slate-800 to-black text-white" 
+        className="  p-3 shadow-md shadow-gray-300 scale-[120%]  hover:scale-125 duration-200 rounded-full bg-gradient-to-tr from-violet-800  to-black text-white" 
         href={'/create'} 
         >
         <Camera />
