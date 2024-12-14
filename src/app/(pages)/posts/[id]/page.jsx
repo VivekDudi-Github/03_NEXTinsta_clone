@@ -27,7 +27,7 @@ const SinglePost = async ({params , passedParams}) => {
     })
     const authorProfile = await prisma.profile.findFirstOrThrow({
         where : {
-            username : post.username ,
+            username : post.creator ,
         }
     })
     const postDate = JSON.stringify(post.createdAt).slice(1 , 11)
@@ -58,7 +58,7 @@ const SinglePost = async ({params , passedParams}) => {
                 <div className="flex">
                     <div>
                         <div className="size-16 rounded-r-full aspect-square overflow-hidden ">
-                            <img src={authorProfile?.avatar || ""} />
+                            <img className="h-full w-full object-cover" src={authorProfile?.avatar || ""} />
                         </div>
                     </div>
                     <div className="ml-1 w-full">
@@ -82,8 +82,6 @@ const SinglePost = async ({params , passedParams}) => {
                         <div className="text-xs text-gray-400 text-right pt-1"> 
                                     {postDate}                                     
                         </div>
-
-
                     </div>
                 </div>
                 <div className="w-full flex justify-between py-2 border-y-2 border-gray-300 my-2">

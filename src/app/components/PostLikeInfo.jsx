@@ -32,9 +32,9 @@ function PostLikeInfo({likes , postId , likeStatus}) {
               className="p-2 active:scale-90 duration-200" 
               onClick={async() => await clickFunc()} 
             >  
-                    <Heart className={`${newLikeStatus ? "fill-pink-600 text-pink-600" : ""}`}  /> 
+                    <Heart size={30} className={`${newLikeStatus ? "fill-pink-600 text-pink-600" : ""}`}  /> 
             </button>
-                {newLikeCount} people liked this post
+                {newLikeCount} likes 
         </div>
     </div>
   )

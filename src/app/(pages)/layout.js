@@ -32,8 +32,8 @@ export default function RootLayout({ children , post }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Theme>
-          <div className="flex h-screen ">
-            <div className="bg-gradient-to-b to-violet-600  from-red-400 hidden lg:block w-56 p-3  shadow-2xl shadow-black h-screen sticky top-0">
+          <div className="flex h-full ">
+            <div className="bg-gradient-to-b to-violet-600  from-red-400 hidden lg:block w-56 p-3  shadow-2xl shadow-black h-[100vh] sticky top-0">
               <img  src="https://www.pngkey.com/png/full/1-13459_instagram-font-logo-white-png-instagram-white-text.png" />
               <DesktopNav/>
             </div>            

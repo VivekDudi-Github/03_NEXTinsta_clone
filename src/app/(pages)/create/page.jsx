@@ -7,7 +7,6 @@ import { PostEntry } from "../../components/action"
 import { useRouter } from "next/navigation"
 
 function page() {
-  const Url = "https://picsum.photos/id/1/2160/3080" ;
 const [ImageUrl , setImageUrl] = useState("") ; 
 const [UploadImage , setUploadImage] = useState(null) ;
 const UploadRef = useRef() ;
@@ -31,7 +30,6 @@ useEffect( () => {
           body : data ,  
       } ) 
       const signedUrl = await uploadRequest.json();
-      console.log(signedUrl);
       
       setImageUrl(signedUrl) ;
       
@@ -43,7 +41,7 @@ useEffect( () => {
     <form className=" w-full" action={ async (FormData) => {
       const id  = await PostEntry(FormData , ImageUrl) ; 
       
-      router.push(`/${id}`)
+      router.push(`/posts/${id}`)
       }}> 
       <div className="flex justify-center font-Billabong gap-4  w-full  p-2 ">
        

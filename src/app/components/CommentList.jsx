@@ -50,7 +50,7 @@ async function CommentList({postId}) {
                                 <div className=" bg-gradient-to-br rounded-lg from-gray-700 via-gray-500 to-white p-[2px]">
                                     <div className=" rounded-md bg-gray-200 p-4 border-gray-300 border-2">
                                         <p>
-                                            {comment.text} Words length limit 88
+                                            {comment.text}
                                         </p>
                                     </div>
                                 </div>

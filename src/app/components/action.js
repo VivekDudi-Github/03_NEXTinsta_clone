@@ -82,7 +82,8 @@ export const PostComment = async (Data , id) => {
 }
 
 export const TogglePostLikes = async ( postId ) => {
-    const {profile} = await sessionFunc() ; 
+    const {profile} = await sessionFunc() ;
+     
 
     const FindLikeStatus = await prisma.like.findFirst({
         where : {
@@ -101,12 +102,39 @@ export const TogglePostLikes = async ( postId ) => {
     {
         await prisma.like.create({
             data : {
-                postId : postId , 
-                liked : true ,
+                postId : postId ,
                 username : profile.username 
             }
         })
     }    
+}
+
+export const TogglePostBookmarks = async (postId) => {
+    const {profile} = await sessionFunc() ; 
+    console.log(postId);
+    
+    const FindBookmarkStatus = await prisma.bookmark.findFirst({
+        where : {
+            postId : postId, 
+            username : profile.username , 
+        }
+    })
+
+    if (FindBookmarkStatus) {
+        await prisma.bookmark.delete({
+            where : {
+                id : FindBookmarkStatus.id
+            }
+        })
+    }else
+    {
+        await prisma.bookmark.create({
+            data : {
+                postId : postId , 
+                username : profile.username 
+            }
+        })
+    } 
 }
 
 export const LogOut = async() => {

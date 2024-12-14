@@ -47,9 +47,16 @@ model Like {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   postId      String @db.ObjectId
   username    String 
-  liked       Boolean
   createdAt   DateTime @default(now())
 }
+
+model Bookmark {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  postId      String @db.ObjectId
+  username    String 
+  createdAt   DateTime @default(now())
+}
+
 
 model Follow {
   id          String @id @default(auto()) @map("_id") @db.ObjectId 
