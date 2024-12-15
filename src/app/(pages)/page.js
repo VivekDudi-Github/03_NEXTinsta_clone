@@ -26,7 +26,7 @@ if(!session){
 }
   return (
   <div className="w-full">
-      <HomePage />
+      <HomePage  />
   </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client"
 import {TogglePostBookmarks} from "./action"
-import { Bookmark } from 'lucide-react'
+import { Bookmark, BookmarkCheck } from 'lucide-react'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -30,12 +30,17 @@ function PostBookMarkInfo({Bookmarks , BookmarkStatus , postId}) {
      <div>
         <div className=" flex justify-start items-center">
             <button
-              className="p-2 active:scale-90 duration-200" 
+              className="p-2 active:scale-90 duration-200 flex  items-center" 
               onClick={async() => await clickFunc()} 
             >  
-                    <Bookmark size={30} className={`${newBookmarkStatus ? "fill-pink-600 text-pink-600" : ""}`}  /> 
+                    {!BookmarkStatus ? 
+                    <Bookmark size={30} className= " text-gray-400" /> 
+                    :
+                    <BookmarkCheck size={30} className=" text-purple-500" />  
+                    } 
+              {newBookmarkCount || ""} 
             </button>
-                {newBookmarkCount} {newBookmarkCount ? "bookmarks" : ""} 
+                
         </div>
     </div>
   )

@@ -2,9 +2,10 @@ import HomeTopRow from "./HomeTopRow"
 import HomePostsFeed from "./HomePostsFeed"
 import { sessionFunc } from "./action"
 import { prisma } from "./db";
+import FollowButton from "./FollowButton";
 
 async function HomePage() {
-    const {session ,profile} = await sessionFunc() ; 
+    const { profile} = await sessionFunc() ; 
     
     const Followings = await prisma.follow.findMany({
         where : {
@@ -18,6 +19,7 @@ async function HomePage() {
         username : {in : Followings.map( f => f.followTo)}
       }
     })
+
 
   return (
     <div>
