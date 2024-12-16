@@ -8,7 +8,7 @@ async function page({ searchParams }) {
     return (
     <div className=' w-full h-full p-4  '>
         <SearchForm />
-        <Suspense fallback='loading...'>
+        <Suspense fallback={"Loading.." }>
             <SearchResults query={Params.query} />
         </Suspense>
     </div>

@@ -1,5 +1,6 @@
 import { prisma } from "../../components/db"
 import PostGrid from "../../components/PostGrid"
+import { Suspense } from "react"
 
 async function page() {
     const posts = await prisma.post.findMany({
@@ -9,7 +10,7 @@ async function page() {
       })
 
     return (
-    <div className="w-full">
+      <div className="w-full">
         <div className="p-4 w-full flex flex-col justify-center">
             <h1 className="text-5xl font-bold">
                 Browse
@@ -19,7 +20,9 @@ async function page() {
             </p>
         </div>
         <div className=" w-full px-4">
-            <PostGrid post={posts} />
+            <Suspense fallback={"loading.."}>
+              <PostGrid post={posts} />
+            </Suspense>
         </div>
     </div>
   )
