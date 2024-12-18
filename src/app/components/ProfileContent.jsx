@@ -2,6 +2,7 @@ import {  Check, ChevronLeft, Cog, LucideMessagesSquare, UserCheck2Icon, UserPlu
 
 import Link from "next/link";
 import ProfilePosts from "./ProfilePosts";
+import ProfilePostSections from './ProfilePostSections'
 import { prisma } from "./db";
 import FollwButton from "./FollowButton"
 import { auth } from "../../auth";
@@ -9,8 +10,7 @@ import { redirect } from "next/navigation";
 import Preloader from "./Preloader";
 import { Suspense } from "react";
 
-async function ProfileContent({profile}) {
-    const session = await auth()
+async function ProfileContent({profile , session , path }) {
     const email = session?.user?.email ;
 
     const ownerProfile = email === profile.email ;
@@ -94,15 +94,10 @@ async function ProfileContent({profile}) {
 
             </section>
 
-            <section className=" flex justify-center ">
-                <Link  className="m-2 font-bold" href={"/"}>POST</Link>
-                <Link  className="m-2 font-bold text-gray-400" href={"/"} >HIGHTLIGHTS</Link>
-            </section>
+            <ProfilePostSections profile={profile}/>
 
             <section className="mt-4">
-                <Suspense fallback={<Preloader/>}>
-                    <ProfilePosts profile = {profile} />
-                </Suspense>
+                <ProfilePosts profile = {profile} path={path} />
             </section>
     </main>
         
