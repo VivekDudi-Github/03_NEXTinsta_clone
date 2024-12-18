@@ -6,6 +6,8 @@ import { prisma } from "./db";
 import FollwButton from "./FollowButton"
 import { auth } from "../../auth";
 import { redirect } from "next/navigation";
+import Preloader from "./Preloader";
+import { Suspense } from "react";
 
 async function ProfileContent({profile}) {
     const session = await auth()
@@ -31,7 +33,7 @@ async function ProfileContent({profile}) {
 
 
   return (
-    <main className="p-4 w-full max-w-[1300px]"> 
+    <main className=" relative p-4 w-full max-w-[1300px]"> 
             <section className="flex justify-between items-center">
                 { ownerProfile && 
                     <button>
@@ -51,13 +53,15 @@ async function ProfileContent({profile}) {
                 }    
             </section>
             
-            <section className="mt-8     flex justify-center items-center">
+            <section className="mt-8 flex justify-center items-center">
                 <div className=" size-[220px]    bg-gradient-to-tr from-violet-400 to-red-600    rounded-full flex justify-center items-center">  
                     <div className=" size-[210px] bg-white rounded-full     flex justify-center items-center">  
                         <div className=" size-[200px] rounded-full overflow-hidden object-cover">
-                            <img className="object-cover size-[200px]"
-                                src={profile?.avatar} >
-                            </img>
+                            <Suspense fallback={<Preloader />}>
+                                <img className="object-cover size-[200px]"
+                                    src={profile?.avatar} >
+                                </img>
+                            </Suspense>
                         </div>
                     </div>
                 </div>
@@ -96,7 +100,9 @@ async function ProfileContent({profile}) {
             </section>
 
             <section className="mt-4">
-                <ProfilePosts profile = {profile} />
+                <Suspense fallback={<Preloader/>}>
+                    <ProfilePosts profile = {profile} />
+                </Suspense>
             </section>
     </main>
         

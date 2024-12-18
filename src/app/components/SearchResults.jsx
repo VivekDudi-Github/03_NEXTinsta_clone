@@ -1,6 +1,8 @@
 import {prisma} from './db'
 import Link from 'next/link'
 import PostGrid from './PostGrid'
+import { Suspense } from 'react'
+import Preloader from './Preloader'
 
 export default async function SearchResults({query}) {
 
@@ -25,9 +27,13 @@ export default async function SearchResults({query}) {
 
   return (
     <div>
+      {profiles || posts ? 
+      
         <h1 className=' my-2 '>
           Search results for {query}
-        </h1>
+        </h1> 
+        : null
+      }
         <h2> 
           <div className=' py-2 flex gap-3 overflow-scroll'>
           { profiles.length > 0 ? 
@@ -59,12 +65,13 @@ export default async function SearchResults({query}) {
               )
             }) :
             <div>
-              No profiles found
             </div>
           }
           </div>
         </h2>
-        <PostGrid post={posts} />
+        <Suspense fallback={<Preloader/>}>
+          <PostGrid post={posts} />
+        </Suspense>
 
     </div>
   )

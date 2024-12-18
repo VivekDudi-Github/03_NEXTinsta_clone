@@ -3,6 +3,8 @@ import HomePostsFeed from "./HomePostsFeed"
 import { sessionFunc } from "./action"
 import { prisma } from "./db";
 import FollowButton from "./FollowButton";
+import { Suspense } from "react";
+import Preloader from "./Preloader";
 
 async function HomePage() {
     const { profile} = await sessionFunc() ; 
@@ -22,9 +24,11 @@ async function HomePage() {
 
 
   return (
-    <div>
+    <div className="relative w-full ">
         <HomeTopRow profiles={profiles} />
-        <HomePostsFeed profiles={profiles} />
+        <Suspense fallback={<Preloader />}>
+          <HomePostsFeed profiles={profiles} />
+        </Suspense>
     </div>
   )
 }
