@@ -2,7 +2,7 @@ import { prisma } from "./db"
 import PostGrid from "./PostGrid"
 
 async function ProfilePosts({profile , path}) {
-    console.log(path);
+    
 let posts ;
 
     const highlightPath = path.includes('highlight') ; 
@@ -17,21 +17,34 @@ let posts ;
         })
     }else if(bookmarkPath){
         
-    posts = await prisma.bookmark.findMany({
+    const BookmarkPosts = await prisma.bookmark.findMany({
         where : {
             username : profile?.username
             }
         })
 
+        posts = await prisma.post.findMany({
+            where : {
+                id : { in : BookmarkPosts.map( p => p.postId)}
+            }
+        })
+
     }
     else if(highlightPath){
+    const BookmarkPost = await prisma.bookmark.findMany({
+        where : {
+            username : profile?.username
+        }
+    })
         
     posts = await prisma.post.findMany({
         where : {
+            id : { in : BookmarkPost.map( p => p.postId)},
             creator : profile?.username
-            }
-        })
+        }
+    })
     }
+    
 
     return (
         <div className="max-w-4xl mx-auto">

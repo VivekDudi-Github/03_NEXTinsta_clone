@@ -28,7 +28,7 @@ export default async function() {
     
     return (
       <>
-        <ProfileContent  path={'/profile'} profile={profile}/>
+        <ProfileContent session={session} path={'/profile'} profile={profile}/>
       </>
     )
 }

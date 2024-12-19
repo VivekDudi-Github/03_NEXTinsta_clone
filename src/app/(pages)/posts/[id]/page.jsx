@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { Bookmark, Heart } from "lucide-react";
 import PostLikeInfo from "../../../components/PostLikeInfo"
 import {auth} from "../../../../auth"
+import PostBookMarkInfo from "../../../components/PostBookMarkInfo";
 
 const SinglePost = async ({params , passedParams}) => {
     const session = await auth() ;
@@ -41,6 +42,19 @@ const SinglePost = async ({params , passedParams}) => {
         where : {
             postId : post.id , 
             username : profile.username ,
+        }
+    })
+
+    const BookmarkCount = await prisma.bookmark.count({
+        where : {
+            postId : post.id
+        }
+    })
+
+    const BookmarkStatus = await prisma.bookmark.count({
+        where : {
+            postId : post.id ,
+            username : profile.username 
         }
     })
     
@@ -88,9 +102,7 @@ const SinglePost = async ({params , passedParams}) => {
                     
                     <PostLikeInfo likes={likeCount} postId={post.id} likeStatus= {likeStatus === 1 ? true : false} />
                     <div className=" flex items-center">
-                        <button>
-                            <Bookmark />
-                        </button>
+                        <PostBookMarkInfo postId={post.id} Bookmarks={BookmarkCount} BookmarkStatus={BookmarkStatus === 1 ? true : false} />
                     </div>
                 </div>
                 <div className="pt-4">

@@ -34,7 +34,7 @@ function PostLikeInfo({likes , postId , likeStatus}) {
             >  
                     <Heart size={30} className={`${newLikeStatus ? "fill-pink-600 text-pink-600" : ""}`}  /> 
             </button>
-                {newLikeCount} likes 
+                { newLikeCount || ""} {newLikeCount ? `${newLikeCount >1 ? 'likes' : 'like'}` : "" }
         </div>
     </div>
   )

@@ -1,8 +1,14 @@
-import React from 'react'
+import ProfileContent from "../../../components/ProfileContent";
+import { sessionFunc } from "../../../components/action";
+import { redirect } from "next/navigation";
 
-function page() {
-  return (
-    <div>page</div>
+async function page() {
+    const {profile , session} = await sessionFunc() ;
+    if(!profile){
+        redirect('/settings')
+    } 
+    return (
+        <ProfileContent profile={profile} session={session} path={'/highlight'} />
   )
 }
 

@@ -17,7 +17,7 @@ function PostBookMarkInfo({Bookmarks , BookmarkStatus , postId}) {
       if(!newBookmarkStatus){
           setnewBookmarkCount(newBookmarkCount + 1)
       }else{
-          setnewBookmarkStatus(newBookmarkCount - 1)
+          setnewBookmarkCount(newBookmarkCount - 1)
       }
       setnewBookmarkStatus(!newBookmarkStatus)
       
@@ -33,12 +33,9 @@ function PostBookMarkInfo({Bookmarks , BookmarkStatus , postId}) {
               className="p-2 active:scale-90 duration-200 flex  items-center" 
               onClick={async() => await clickFunc()} 
             >  
-                    {!BookmarkStatus ? 
-                    <Bookmark size={30} className= " text-gray-400" /> 
-                    :
-                    <BookmarkCheck size={30} className=" text-purple-500" />  
-                    } 
-              {newBookmarkCount || ""} 
+            <Bookmark size={30} className={BookmarkStatus ? 'fill-purple-500 text-purple-500' : ''} />
+                    
+              {(newBookmarkCount || "") + (newBookmarkCount ? `${newBookmarkCount > 1 ? ' bookmarks' : ' bookmark'}` : "")} 
             </button>
                 
         </div>

@@ -5,8 +5,6 @@ import ProfilePosts from "./ProfilePosts";
 import ProfilePostSections from './ProfilePostSections'
 import { prisma } from "./db";
 import FollwButton from "./FollowButton"
-import { auth } from "../../auth";
-import { redirect } from "next/navigation";
 import Preloader from "./Preloader";
 import { Suspense } from "react";
 
@@ -15,7 +13,7 @@ async function ProfileContent({profile , session , path }) {
 
     const ownerProfile = email === profile.email ;
     
-    let followState ;
+let followState ;
     if(!ownerProfile ){     
         const {username} =  await prisma.profile.findFirst({
             where : {

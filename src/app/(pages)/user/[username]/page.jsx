@@ -1,7 +1,7 @@
 import { prisma } from "../../../components/db";
 import ProfileContent from "../../../components/ProfileContent";
 import { auth } from "../../../../auth";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 
 async function page({params}) {
     let {username} = await params ;
@@ -20,7 +20,7 @@ async function page({params}) {
     }
     
   return (
-    <ProfileContent profile={profile} />
+    <ProfileContent profile={profile} path={'/profile'} />
   )
 }
 
